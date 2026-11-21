@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CalculaFácil es una calculadora online gratuita para realizar operaciones matemáticas de forma rápida y sencilla.">
+<meta name="keywords" content="calculadora online, calculadora gratis, matemáticas, operaciones">
+<meta name="author" content="CalculaFácil">
+<title>CalculaFácil - Calculadora Online Gratis</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 22px 15px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+nav {
+    background: #1e40af;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
+}
+
+main {
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.intro h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.calculator {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.display {
+    width: 100%;
+    min-height: 75px;
+    background: #eaf0ff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 30px;
+    color: #1e40af;
+    overflow: hidden;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 19px 10px;
+    border-radius: 9px;
+    font-size: 19px;
+    cursor: pointer;
+    background: #e2e8f0;
+    color: #1e293b;
+    transition: 0.2s;
+}
+
+button:hover {
+    filter: brightness(0.94);
+}
+
+.operator {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.equal {
+    background: #2563eb;
+    color: white;
+}
+
+.clear {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.info {
+    background: white;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 12px;
+    line-height: 1.8;
+}
+
+.info h2 {
+    margin-bottom: 12px;
+    color: #1e40af;
+}
+
+.ad-space {
+    max-width: 728px;
+    min-height: 90px;
+    margin: 25px auto;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    border-radius: 8px;
+    text-align: center;
+}
+
+footer {
+    margin-top: 40px;
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    line-height: 2;
+}
+
+footer a {
+    color: white;
+    margin: 0 8px;
+}
+
+@media(max-width: 480px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .calculator {
+        padding: 17px;
+    }
+
+    button {
+        padding: 17px 5px;
+    }
+
+    nav a {
+        margin: 0 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CalculaFácil</h1>
+    <p>Tu calculadora online gratuita</p>
+</header>
+
+<nav>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#informacion">Información</a>
+    <a href="#contacto">Contacto</a>
+</nav>
+
+<main>
+
+<section class="intro">
+    <h2>Calculadora Online Gratis</h2>
+    <p>
+        Realiza operaciones matemáticas de manera rápida,
+        sencilla y gratuita. Utiliza nuestra calculadora
+        desde cualquier dispositivo.
+    </p>
+</section>
+
+<!-- ESPACIO PARA PUBLICIDAD -->
+<div class="ad-space">
+    Espacio publicitario
+</div>
+
+<section class="calculator" id="calculadora">
+
+    <div class="display" id="display" aria-live="polite">0</div>
+
+    <div class="buttons">
+
+        <button class="clear" onclick="limpiar()">AC</button>
+        <button onclick="borrar()">DEL</button>
+        <button class="operator" onclick="agregar('%')">%</button>
+        <button class="operator" onclick="agregar('/')">÷</button>
+
+        <button onclick="agregar('7')">7</button>
+        <button onclick="agregar('8')">8</button>
+        <button onclick="agregar('9')">9</button>
+        <button class="operator" onclick="agregar('*')">×</button>
+
+        <button onclick="agregar('4')">4</button>
+        <button onclick="agregar('5')">5</button>
+        <button onclick="agregar('6')">6</button>
+        <button class="operator" onclick="agregar('-')">−</button>
+
+        <button onclick="agregar('1')">1</button>
+        <button onclick="agregar('2')">2</button>
+        <button onclick="agregar('3')">3</button>
+        <button class="operator" onclick="agregar('+')">+</button>
+
+        <button onclick="agregar('(')">(</button>
+        <button onclick="agregar('0')">0</button>
+        <button onclick="agregar('.')">.</button>
+        <button class="equal" onclick="calcular()">=</button>
+
+    </div>
+</section>
+
+<!-- SEGUNDO ESPACIO PUBLICITARIO -->
+<div class="ad-space">
+    Espacio publicitario
+</div>
+
+<section class="info" id="informacion">
+    <h2>¿Cómo utilizar nuestra calculadora?</h2>
+
+    <p>
+        Nuestra calculadora online está diseñada para que
+        cualquier persona pueda realizar operaciones
+        matemáticas fácilmente.
+    </p>
+
+    <p>
+        Puedes realizar sumas, restas, multiplicaciones,
+        divisiones y cálculos con porcentajes.
+        Solo tienes que seleccionar los números y
+        las operaciones que necesitas.
+    </p>
+
+    <h2>Ventajas de CalculaFácil</h2>
+
+    <ul>
+        <li>Completamente gratuita.</li>
+        <li>No necesitas registrarte.</li>
+        <li>Compatible con móviles y ordenadores.</li>
+        <li>Fácil de utilizar.</li>
+        <li>Resultados rápidos.</li>
+    </ul>
+</section>
+
+</main>
+
+<footer id="contacto">
+    <p>© 2026 CalculaFácil. Todos los derechos reservados.</p>
+    <p>
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="contacto.html">Contacto</a>
+    </p>
+</footer>
+
+<script>
+let expresion = "";
+
+const display = document.getElementById("display");
+
+function actualizar() {
+    display.textContent = expresion || "0";
+}
+
+function agregar(valor) {
+    if (expresion.length >= 100) return;
+    expresion += valor;
+    actualizar();
+}
+
+function limpiar() {
+    expresion = "";
+    actualizar();
+}
+
+function borrar() {
+    expresion = expresion.slice(0, -1);
+    actualizar();
+}
+
+function calcular() {
+    try {
+        if (!expresion) return;
+
+        // Solo permite números y operadores matemáticos.
+        if (!/^[0-9+\-*/%.() ]+$/.test(expresion)) {
+            throw new Error("Operación no válida");
+        }
+
+        // Evalúa la expresión matemática.
+        const resultado = Function(
+            '"use strict"; return (' + expresion + ')'
+        )();
+
+        if (!Number.isFinite(resultado)) {
+            throw new Error("Resultado no válido");
+        }
+
+        expresion = String(
+            Number(resultado.toPrecision(12))
+        );
+
+        actualizar();
+
+    } catch (error) {
+        display.textContent = "Error";
+        expresion = "";
+    }
+}
+
+// Permite utilizar el teclado.
+document.addEventListener("keydown", function(e) {
+    if (/^[0-9+\-*/%.()]$/.test(e.key)) {
+        agregar(e.key);
+    } else if (e.key === "Enter") {
+        calcular();
+    } else if (e.key === "Backspace") {
+        borrar();
+    } else if (e.key === "Escape") {
+        limpiar();
+    }
+});
+</script>
+
+</body>
+</html>
